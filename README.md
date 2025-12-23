@@ -413,6 +413,44 @@ This keeps SkillPort simple and secure-it's a harbor, not a runtime.
 
 [Full Configuration Guide →](https://github.com/gotalab/skillport/blob/main/guide/configuration.md)
 
+## Embedding Search (Optional)
+
+SkillPort can use embeddings for semantic search. By default it uses a local
+embedding server and falls back to full-text search if the local model is not
+available.
+
+### Providers
+
+- `local` (default): OpenAI-compatible endpoint, default base URL
+  `http://localhost:11434/v1`, default model `bge-m3`
+- `none`: Disable embeddings (full-text search only)
+- `dashscope`, `zhipu`, `baidu`, `tencent`: Domestic providers
+- `openai_compatible`: Any OpenAI-compatible endpoint
+
+### Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `SKILLPORT_EMBEDDING_PROVIDER` | Provider name | `local` |
+| `SKILLPORT_EMBEDDING_MODEL` | Embedding model | `bge-m3` |
+| `SKILLPORT_EMBEDDING_BASE_URL` | Base URL for OpenAI-compatible providers | `http://localhost:11434/v1` |
+| `SKILLPORT_EMBEDDING_API_KEY` | API key for providers that require it | empty |
+| `DASHSCOPE_API_KEY` | Alias for DashScope | empty |
+
+### Windows One-Click Switch
+
+In `scripts/`:
+- `set-embedding-local.cmd`
+- `set-embedding-none.cmd`
+- `set-embedding-dashscope.cmd` (requires `DASHSCOPE_API_KEY`)
+
+### Local Ollama Example
+
+```bash
+ollama pull bge-m3
+set SKILLPORT_EMBEDDING_PROVIDER=local
+```
+
 ## Creating Skills
 
 Create a `SKILL.md` file with YAML frontmatter. `name` and `description` are required:
