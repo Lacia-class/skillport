@@ -89,3 +89,4 @@ include = [
 include = [
     "scripts/*.cmd",
 ]
+packages = ["src/skillport"]
