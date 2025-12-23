@@ -21,7 +21,8 @@ def _normalize_score(row: dict[str, Any]) -> float:
             return 0.0
     if row.get("_distance") is not None:
         try:
-            return -float(row["_distance"])
+            distance = float(row["_distance"])
+            return 1.0 / (1.0 + distance)
         except Exception:
             return 0.0
     return 0.0

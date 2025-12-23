@@ -40,6 +40,7 @@ def search_skills(query: str, *, limit: int = 10, config: Config) -> SearchResul
                 description=row.get("description", ""),
                 category=normalize_token(category),
                 score=score,
+                source=str(row.get("_source", "")),
             )
         )
 
