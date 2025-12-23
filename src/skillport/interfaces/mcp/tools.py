@@ -31,7 +31,7 @@ def register_tools(mcp: FastMCP, config: Config, *, is_remote: bool = False) -> 
             query: Natural-language task (e.g., "extract PDF text"). Use "" or "*" to list all.
 
         Returns:
-            skills: Top matches as {id, description, score}. Higher score = better match.
+            skills: Top matches as {id, description, score, source}. Higher score = better match.
             total: Total matching skills. If high, use a more specific query.
         """
         result = search_skills(query, limit=config.search_limit, config=config)
@@ -41,6 +41,8 @@ def register_tools(mcp: FastMCP, config: Config, *, is_remote: bool = False) -> 
                 "id": s.id,
                 "description": s.description,
                 "score": s.score,
+                "source": s.source,
+                "_source": s.source,
             }
             # Only include name if it differs from id
             if s.name != s.id:
