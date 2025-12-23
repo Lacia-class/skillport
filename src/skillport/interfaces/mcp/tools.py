@@ -42,7 +42,6 @@ def register_tools(mcp: FastMCP, config: Config, *, is_remote: bool = False) -> 
                 "description": s.description,
                 "score": s.score,
                 "source": s.source,
-                "_source": s.source,
             }
             # Only include name if it differs from id
             if s.name != s.id:
