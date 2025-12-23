@@ -419,6 +419,25 @@ SkillPort can use embeddings for semantic search. By default it uses a local
 embedding server and falls back to full-text search if the local model is not
 available.
 
+### 中文说明
+
+默认使用本地 embedding（OpenAI 兼容接口），若本地模型不可用会自动降级为
+全文搜索（FTS）。
+
+常用示例：
+
+```bash
+# 本地 Ollama（默认）
+set SKILLPORT_EMBEDDING_PROVIDER=local
+
+# DashScope（国内）
+set SKILLPORT_EMBEDDING_PROVIDER=dashscope
+set DASHSCOPE_API_KEY=你的Key
+
+# 禁用 embedding（只用全文搜索）
+set SKILLPORT_EMBEDDING_PROVIDER=none
+```
+
 ### Providers
 
 - `local` (default): OpenAI-compatible endpoint, default base URL
