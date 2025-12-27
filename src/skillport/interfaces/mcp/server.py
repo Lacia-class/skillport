@@ -1,6 +1,7 @@
 import sys
 from importlib.metadata import PackageNotFoundError, version
 from typing import Literal
+import sys
 
 from fastmcp import FastMCP
 
@@ -81,6 +82,11 @@ def run_server(
         force_reindex: Force reindex before starting.
         skip_auto_reindex: Skip automatic reindex check.
     """
+    try:
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
     print(BANNER, file=sys.stderr)
 
     decision = should_reindex(config=config)
