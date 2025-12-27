@@ -1,5 +1,6 @@
 """Transitional entry point dispatching to CLI or MCP server."""
 
+import os
 import sys
 
 from skillport.interfaces.cli.app import app
@@ -8,6 +9,14 @@ from skillport.shared.config import Config
 
 
 def main():
+    try:
+        os.environ.setdefault("PYTHONIOENCODING", "utf-8")
+        os.environ.setdefault("PYTHONUTF8", "1")
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
     args = sys.argv[1:]
     # Legacy: no args → run MCP server (backward compat)
     # Note: `skillport --reindex` is NOT supported; use `skillport serve --reindex`
