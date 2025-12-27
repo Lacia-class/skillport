@@ -83,6 +83,7 @@ def run_server(
         skip_auto_reindex: Skip automatic reindex check.
     """
     try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
         sys.stderr.reconfigure(encoding="utf-8", errors="replace")
     except Exception:
         pass
